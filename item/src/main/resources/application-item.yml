@@ -1,9 +1,9 @@
 server:
-  port: 8800
+  port: 8888
 
 spring:
   application:
-    name: web
+    name: item
 eureka:
   client:
     serviceUrl:

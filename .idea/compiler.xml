@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="admin" />
         <module name="discovery" />
+        <module name="domains" />
         <module name="item" />
         <module name="order" />
         <module name="user" />
@@ -17,6 +18,7 @@
     <bytecodeTargetLevel>
       <module name="admin" target="1.8" />
       <module name="discovery" target="1.8" />
+      <module name="domains" target="1.8" />
       <module name="item" target="1.8" />
       <module name="order" target="1.8" />
       <module name="project" target="1.8" />
