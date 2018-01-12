@@ -11,16 +11,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+/**
+ * 请求执行异常，则返回错误信息
+ */
 @ControllerAdvice
 public class WebExceptionHandler {
-//
-//    private static final ImmutableMap<Class<? extends Throwable>, ErrorResponse> EXCEPTION_HANDLER;
-//
-//    static {
-//        final ImmutableMap.Builder<Class<? extends Throwable>, ErrorResponse> builders = ImmutableMap.builder();
-//        builders.put(Exception.class, new ErrorResponse(444, "服务异常，请稍候再试"));
-//        EXCEPTION_HANDLER = builders.build();
-//    }
 
     @ExceptionHandler
     public void exceptionHappens(Exception e, HttpServletRequest request, HttpServletResponse response) {

@@ -9,7 +9,7 @@ import java.util.Collection;
  * 集合类返回值
  */
 public class CollectionResponse<T> {
-    private int code;
+    private int code = 200;
     private String msg;
     private Collection<T> data;
 }

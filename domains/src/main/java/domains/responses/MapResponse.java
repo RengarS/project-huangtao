@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @Data
 public class MapResponse<K, V> {
-    private int code;
+    private int code = 200;
     private String msg;
     private Map<K, V> data;
 

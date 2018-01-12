@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.DispatcherType;
 
+/**
+ * 将拦截器加入spring中
+ */
 @Configuration
 public class FilterConfig {
     @Bean

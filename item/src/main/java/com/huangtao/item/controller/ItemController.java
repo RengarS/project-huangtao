@@ -15,10 +15,10 @@ import java.util.List;
 public class ItemController {
     @GetMapping("/comments/{id}")
     public List<Comment> getStoreComment(@PathVariable("id") String id) {
-        System.out.println("=====");
         List<Comment> comments = new LinkedList<>();
         comments.add(new Comment());
         comments.add(new Comment());
+
         return comments;
     }
 

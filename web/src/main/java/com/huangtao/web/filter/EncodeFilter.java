@@ -1,11 +1,15 @@
 package com.huangtao.web.filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
+import javax.servlet.FilterConfig;
 import java.io.IOException;
 
-@WebFilter("/*")
+/**
+ * 进出的参数设置成utf8
+ */
 public class EncodeFilter implements Filter {
+
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
