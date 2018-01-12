@@ -1,6 +1,24 @@
 spring:
   application:
     name: user
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  redis:
+    host:
+    database:
+    password:
+    port:
+    timeout:
+    pool:
+      max-idle:
+      max-active:
+
+
 eureka:
   client:
     serviceUrl:
