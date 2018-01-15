@@ -15,7 +15,7 @@ public class UserController {
     CustomerService customerService;
 
     @PostMapping("/login")
-    public Boolean login(@RequestParam("username") String username, String password) {
+    public boolean login(@RequestParam("username") String username, String password) {
         if (!username.trim().equals("") && !password.trim().equals("")) {
             String password1 = password.trim();
             if (password1.length() >= 6 && password1.length() <= 16) {
@@ -33,18 +33,18 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public Boolean register(@RequestParam @NotBlank Object object) {
+    public boolean register(@RequestParam @NotBlank Object object) {
         return customerService.save((CustomerDO) object);
     }
 
 
     @PostMapping("/update")
-    public Boolean update(@RequestParam @NotBlank Object object) {
+    public boolean update(@RequestParam @NotBlank Object object) {
         return customerService.updateCustomerInfo((CustomerDO) object);
     }
 
     @PostMapping("/delete/{id}")
-    public Boolean delete(@PathVariable("id") @NotBlank String id) {
+    public boolean delete(@PathVariable("id") @NotBlank String id) {
         return customerService.delCustomer(id);
     }
 
