@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/items/")
 public class ItemController {
+
     @GetMapping("/comments/{id}")
     public List<Comment> getStoreComment(@PathVariable("id") String id) {
         List<Comment> comments = new LinkedList<>();
@@ -28,5 +29,10 @@ public class ItemController {
         items.add(new Item());
         items.add(new Item());
         return items;
+    }
+
+    @GetMapping(value = "/index")
+    public String TestController() {
+        return "我是  itemS";
     }
 }

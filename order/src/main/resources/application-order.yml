@@ -1,0 +1,22 @@
+server:
+  port: 8877
+spring:
+  application:
+    name: order
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: taotao521
+    url: jdbc:mysql://127.0.0.1:3306/didifood?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
