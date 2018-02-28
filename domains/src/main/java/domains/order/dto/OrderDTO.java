@@ -1,11 +1,13 @@
-package com.huangtao.order.domain;
+package domains.order.dto;
 
+import domains.order.OrderFood;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
-public class OrderDO implements Serializable {
+public class OrderDTO implements Serializable {
     private String orderId;
     private String orderCustomId;
     private String orderCustomName;
@@ -14,5 +16,6 @@ public class OrderDO implements Serializable {
     private String endAddrAll;
     private String orderStoreId;
     private String orderStoreName;
+    private List<OrderFood> foods;
 }
 

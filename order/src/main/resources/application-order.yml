@@ -5,8 +5,8 @@ spring:
     name: order
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    password: taotao521
-    url: jdbc:mysql://127.0.0.1:3306/didifood?useUnicode=true&amp;characterEncoding=UTF-8
+    password: root
+    url: jdbc:mysql://123.206.88.31:3306/didifood?useUnicode=true&amp;characterEncoding=UTF-8
     username: root
     type: com.alibaba.druid.pool.DruidDataSource
 
@@ -20,3 +20,7 @@ eureka:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#logging:
+#  config: classpath:log4j2.xml
+
