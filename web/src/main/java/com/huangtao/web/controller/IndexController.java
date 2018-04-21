@@ -12,19 +12,27 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 @RequestMapping("/user/")
 public class IndexController {
+
     @Autowired
     private RestTemplate restTemplate;
 
     @GetMapping(value = "/{id}")
     @ResponseBody
     public User getUserInfo(@PathVariable("id") String id) {
-        return
-                restTemplate.getForObject("http://user/user/" + id, User.class);
+
+        return restTemplate.getForObject("http://user/user/" + id, User.class);
+    }
+
+    @GetMapping(value = "/index")
+    @ResponseBody
+    public String TestController() {
+
+        return "我是  web2";
     }
 }
 
-@Data
-class User {
-    private int id;
-    private String name;
+    @Data
+    class User {
+        private int id;
+        private String name;
 }

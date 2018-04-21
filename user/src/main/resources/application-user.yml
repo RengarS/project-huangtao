@@ -1,23 +1,12 @@
 spring:
+   port: 8878
   application:
     name: user
   datasource:
-    url:
-    username:
-    password:
+    url: jdbc:mysql://localhost:3306/socks?useSSL=false
+    username: root
+    password: taotao521
     driver-class-name: com.mysql.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
-
-  redis:
-    host:
-    database:
-    password:
-    port:
-    timeout:
-    pool:
-      max-idle:
-      max-active:
-
 
 eureka:
   client:
@@ -25,3 +14,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+

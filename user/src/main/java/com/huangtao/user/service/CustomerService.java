@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
+
     @Autowired
     CustomerDAO customerDAO;
 
-    public Boolean delCustomer(String id) {
+    public boolean delCustomer(String id) {
         return customerDAO.deleteCustomerDOById(id) > 0;
     }
 
-    public Boolean updateCustomerInfo(CustomerDO customerDO) {
+    public boolean updateCustomerInfo(CustomerDO customerDO) {
         return customerDAO.update(customerDO) > 0;
     }
 
@@ -22,15 +23,17 @@ public class CustomerService {
         return customerDAO.getCustomerById(id);
     }
 
-    public Boolean save(CustomerDO customerDO) {
+    public boolean save(CustomerDO customerDO) {
         return customerDAO.save(customerDO) > 0;
     }
 
-    public Boolean isExist(CustomerDO customerDO) {
+    public boolean isExist(CustomerDO customerDO) {
         CustomerDO customerDO1 = customerDAO.getCustomerById(customerDO.getId());
         if (customerDO.getCustomerPassword().equals(customerDO1.getCustomerPassword())) {
             return true;
         }
         return false;
     }
+
+
 }

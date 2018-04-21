@@ -15,7 +15,7 @@
         <module name="web" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
       <module name="admin" target="1.8" />
       <module name="discovery" target="1.8" />
       <module name="domains" target="1.8" />
