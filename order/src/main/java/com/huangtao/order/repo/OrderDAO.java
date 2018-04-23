@@ -4,7 +4,6 @@ import com.huangtao.order.domain.OrderDO;
 import domains.order.OrderFood;
 import domains.order.dto.OrderDTO;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
