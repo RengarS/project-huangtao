@@ -25,7 +25,6 @@ public class OrderController {
         return restTemplate.getForObject("http://order/shops/showshops", List.class);
     }
 
-
     //获取一个商家的在售商品
     @RequestMapping("/foods/{name}")
     public List<FoodsDO> getFoods(@PathVariable String name) {
