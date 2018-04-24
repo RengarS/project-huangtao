@@ -1,6 +1,6 @@
-package com.huangtao.order.domain.service;
+package com.huangtao.order.service;
 
-import com.huangtao.order.domain.dao.ShopsDAO;
+import com.huangtao.order.repo.ShopsDAO;
 import domains.order.dto.ShopsDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

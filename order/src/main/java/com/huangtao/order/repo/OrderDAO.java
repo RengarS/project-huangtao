@@ -1,6 +1,6 @@
 package com.huangtao.order.repo;
 
-import com.huangtao.order.domain.OrderDO;
+import domains.order.OrderDO;
 import domains.order.OrderFood;
 import domains.order.dto.OrderDTO;
 import org.apache.ibatis.annotations.*;

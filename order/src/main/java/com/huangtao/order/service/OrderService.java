@@ -1,6 +1,6 @@
 package com.huangtao.order.service;
 
-import com.huangtao.order.domain.OrderDO;
+import domains.order.OrderDO;
 import com.huangtao.order.repo.OrderDAO;
 import domains.order.dto.OrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;

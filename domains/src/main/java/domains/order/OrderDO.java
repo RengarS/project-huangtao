@@ -1,4 +1,4 @@
-package com.huangtao.order.domain;
+package domains.order;
 
 import lombok.Data;
 

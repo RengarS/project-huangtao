@@ -1,4 +1,4 @@
-package com.huangtao.order.domain.dao;
+package com.huangtao.order.repo;
 
 import domains.order.dto.ShopsDO;
 import org.apache.ibatis.annotations.Mapper;
