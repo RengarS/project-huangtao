@@ -1,14 +1,14 @@
 package com.huangtao.user.controller;
 
 import com.huangtao.user.domain.CustomerDO;
-import com.huangtao.user.domain.CustomerDTO;
 import com.huangtao.user.service.CustomerService;
+import domains.user.CustomerDTO;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user/")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -50,6 +50,6 @@ public class UserController {
 
     @GetMapping("/see/{id}")
     public CustomerDTO see(@PathVariable("id") @NotBlank String id) {
-        return null;
+        return new CustomerDTO();
     }
 }

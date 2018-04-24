@@ -1,5 +1,6 @@
 package com.huangtao.web.controller;
 
+import domains.user.CustomerDTO;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/user")
 public class IndexController {
 
     @Autowired
@@ -18,17 +19,11 @@ public class IndexController {
 
     @GetMapping(value = "/{id}")
     @ResponseBody
-    public User getUserInfo(@PathVariable("id") String id) {
+    public CustomerDTO getUserInfo(@PathVariable("id") String id) {
 
-        return restTemplate.getForObject("http://user/user/" + id, User.class);
+        return restTemplate.getForObject("http://user/user/see/" + id, CustomerDTO.class);
     }
 
-    @GetMapping(value = "/index")
-    @ResponseBody
-    public String TestController() {
-
-        return "我是  web2";
-    }
 }
 
     @Data
