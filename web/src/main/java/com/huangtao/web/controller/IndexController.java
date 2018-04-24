@@ -25,9 +25,8 @@ public class IndexController {
     }
 
 }
-
-    @Data
-    class User {
-        private int id;
-        private String name;
+@Data
+class User {
+    private int id;
+    private String name;
 }

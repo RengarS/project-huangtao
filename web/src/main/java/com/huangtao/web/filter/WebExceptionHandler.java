@@ -27,6 +27,7 @@ public class WebExceptionHandler {
         }
         PrintWriter writer = null;
         try {
+            e.printStackTrace();
             writer = response.getWriter();
             writer.write(json);
             writer.flush();
