@@ -1,6 +1,6 @@
 package com.huangtao.web.controller;
 
-import domains.order.dto.FoodsDO;
+import domains.order.OrderMenu;
 import domains.order.dto.ShopsDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +27,8 @@ public class OrderController {
 
     //获取一个商家的在售商品
     @RequestMapping("/foods/{name}")
-    public List<FoodsDO> getFoods(@PathVariable String name) {
-        return restTemplate.getForObject("http://order/foods/showfoods/" + name, List.class);
+    public OrderMenu getFoods(@PathVariable String name) {
+        return restTemplate.getForObject("http://order/foods/showfoods/" + name, OrderMenu.class);
 
     }
 }

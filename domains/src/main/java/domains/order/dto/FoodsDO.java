@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class FoodsDO {
+    private String foodId;
     private String name;
     private String url;
     private String sales;
