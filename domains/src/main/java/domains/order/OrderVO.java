@@ -9,6 +9,7 @@ import java.util.List;
 public class OrderVO {
 
 
+
     private String orderId;
     private String orderCustomName;//顾客名称
     private String orderStoreName;//订单所属商店名称

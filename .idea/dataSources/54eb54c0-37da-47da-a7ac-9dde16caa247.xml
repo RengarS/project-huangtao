@@ -99,9 +99,9 @@
     </column>
     <column id="34" parent="9" name="order_id">
       <Position>1</Position>
-      <DataType>int(10)|0</DataType>
+      <DataType>varchar(48)|0</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
     <column id="35" parent="9" name="order_custom_id">
       <Position>2</Position>
@@ -211,7 +211,7 @@
     </column>
     <column id="61" parent="12" name="order_id">
       <Position>1</Position>
-      <DataType>char(10)|0</DataType>
+      <DataType>varchar(48)|0</DataType>
     </column>
     <column id="62" parent="12" name="food_id">
       <Position>2</Position>

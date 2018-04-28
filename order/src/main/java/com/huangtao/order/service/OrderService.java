@@ -32,11 +32,12 @@ public class OrderService {
     }
 
     public boolean addOrder(OrderVO orderVO){
-       String  orderId = UUID.randomUUID().toString();
+       String orderId = UUID.randomUUID().toString();
        orderVO.setOrderId(orderId);
        orderDao.addOrder(orderVO);
         for (OrderFoods obj:orderVO.getList()
              ) {
+            obj.setOrderId(orderId);
             orderDao.addOrderTemp(obj);
         }
         return true;
