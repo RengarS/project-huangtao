@@ -16,8 +16,8 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping(value = "/addorder")
-    public boolean addOrder(@RequestBody @NotBlank Object object) {
-        return orderService.addOrder((OrderVO) object);
+    public boolean addOrder(@RequestBody @NotBlank OrderVO orderVO) {
+        return orderService.addOrder(orderVO);
     }
 
     @GetMapping(value = "/getorder/{id}")

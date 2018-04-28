@@ -59,7 +59,7 @@ public interface OrderDAO {
      * @return
      */
     @Insert("insert into order_all(order_id,order_custom_name,order_store_name,end_addr_all,order_custom_tel) values(#{orderId},#{orderCustomName},#{orderStoreName},#{endAddrAll},#{orderCustomTel})")
-    int addOrder(@Param("OrderVO") OrderVO orderVO,@Param("orderId") String orderId);
+    int addOrder( OrderVO orderVO);
 
     /**
      * 新增订单(增加商品信息)
@@ -68,7 +68,7 @@ public interface OrderDAO {
      * @return
      */
     @Insert("insert into t_order_all(order_id,food_id,food_name,state,numb,price) values(#{orderId},#{foodId},#{foodName},0,#{numb},#{price})")
-    int addOrderTemp(@Param("OrderFoods") OrderFoods orderFoods,@Param("orderId") String orderId);
+    int addOrderTemp( OrderFoods orderFoods);
 
 
 
