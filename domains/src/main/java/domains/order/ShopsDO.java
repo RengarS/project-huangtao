@@ -1,4 +1,4 @@
-package domains.order.dto;
+package domains.order;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package com.huangtao.order.repo;
 
-import domains.order.dto.ShopsDO;
+import domains.order.ShopsDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;

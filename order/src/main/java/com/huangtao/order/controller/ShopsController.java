@@ -1,7 +1,7 @@
 package com.huangtao.order.controller;
 
 
-import domains.order.dto.ShopsDO;
+import domains.order.ShopsDO;
 import com.huangtao.order.service.ShopsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

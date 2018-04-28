@@ -99,7 +99,9 @@
     </column>
     <column id="34" parent="9" name="order_id">
       <Position>1</Position>
-      <DataType>char(10)|0</DataType>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="35" parent="9" name="order_custom_id">
       <Position>2</Position>
@@ -129,119 +131,138 @@
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="42" parent="10" name="cart_id">
+    <column id="42" parent="9" name="order_custom_tel">
+      <Position>9</Position>
+      <DataType>varchar(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="43" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>order_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="44" parent="10" name="cart_id">
       <Position>1</Position>
       <DataType>char(10)|0</DataType>
     </column>
-    <column id="43" parent="10" name="cart_custom_id">
+    <column id="45" parent="10" name="cart_custom_id">
       <Position>2</Position>
       <DataType>char(10)|0</DataType>
     </column>
-    <column id="44" parent="10" name="cart_custom_name">
+    <column id="46" parent="10" name="cart_custom_name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="45" parent="10" name="cart_state">
+    <column id="47" parent="10" name="cart_state">
       <Position>4</Position>
       <DataType>char(2)|0</DataType>
     </column>
-    <column id="46" parent="10" name="food_id">
+    <column id="48" parent="10" name="food_id">
       <Position>5</Position>
       <DataType>char(2)|0</DataType>
     </column>
-    <column id="47" parent="10" name="food_name">
+    <column id="49" parent="10" name="food_name">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="48" parent="11" name="store_id">
+    <column id="50" parent="11" name="store_id">
       <Position>1</Position>
       <DataType>char(10)|0</DataType>
     </column>
-    <column id="49" parent="11" name="store_name">
+    <column id="51" parent="11" name="store_name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="50" parent="11" name="store_addr_all">
+    <column id="52" parent="11" name="store_addr_all">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="51" parent="11" name="store_state">
+    <column id="53" parent="11" name="store_state">
       <Position>4</Position>
       <DataType>char(10)|0</DataType>
     </column>
-    <column id="52" parent="11" name="star">
+    <column id="54" parent="11" name="star">
       <Position>5</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="53" parent="11" name="sales">
+    <column id="55" parent="11" name="sales">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="54" parent="11" name="initial_price">
+    <column id="56" parent="11" name="initial_price">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="55" parent="11" name="distribution_price">
+    <column id="57" parent="11" name="distribution_price">
       <Position>8</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="56" parent="11" name="distance">
+    <column id="58" parent="11" name="distance">
       <Position>9</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="57" parent="11" name="time">
+    <column id="59" parent="11" name="time">
       <Position>10</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="58" parent="11" name="url">
+    <column id="60" parent="11" name="url">
       <Position>11</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="59" parent="12" name="order_id">
+    <column id="61" parent="12" name="order_id">
       <Position>1</Position>
       <DataType>char(10)|0</DataType>
     </column>
-    <column id="60" parent="12" name="food_id">
+    <column id="62" parent="12" name="food_id">
       <Position>2</Position>
       <DataType>char(10)|0</DataType>
     </column>
-    <column id="61" parent="12" name="food_name">
+    <column id="63" parent="12" name="food_name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="62" parent="12" name="state">
+    <column id="64" parent="12" name="state">
       <Position>4</Position>
       <DataType>char(2)|0</DataType>
     </column>
-    <column id="63" parent="13" name="user_id">
+    <column id="65" parent="12" name="numb">
+      <Position>5</Position>
+      <DataType>varchar(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="12" name="price">
+      <Position>6</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <column id="67" parent="13" name="user_id">
       <Position>1</Position>
       <DataType>char(10)|0</DataType>
     </column>
-    <column id="64" parent="13" name="user_name">
+    <column id="68" parent="13" name="user_name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="65" parent="13" name="user_password">
+    <column id="69" parent="13" name="user_password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="66" parent="13" name="user_type">
+    <column id="70" parent="13" name="user_type">
       <Position>4</Position>
       <DataType>char(2)|0</DataType>
     </column>
-    <column id="67" parent="13" name="user_qq">
+    <column id="71" parent="13" name="user_qq">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="68" parent="13" name="user_mail">
+    <column id="72" parent="13" name="user_mail">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="69" parent="13" name="user_tel">
+    <column id="73" parent="13" name="user_tel">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="70" parent="13" name="user_store_id">
+    <column id="74" parent="13" name="user_store_id">
       <Position>8</Position>
       <DataType>char(10)|0</DataType>
     </column>

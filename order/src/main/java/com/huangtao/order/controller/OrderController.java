@@ -2,22 +2,22 @@ package com.huangtao.order.controller;
 
 import com.huangtao.order.service.OrderService;
 import domains.order.OrderDO;
+import domains.order.OrderVO;
 import domains.order.dto.OrderDTO;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/order/")
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
     OrderService orderService;
 
     @PostMapping(value = "/addorder")
-    public boolean addOrder(@RequestParam @NotBlank Object object) {
-
-        return orderService.saveOrder((OrderDO) object);
+    public boolean addOrder(@RequestBody @NotBlank Object object) {
+        return orderService.addOrder((OrderVO) object);
     }
 
     @GetMapping(value = "/getorder/{id}")
