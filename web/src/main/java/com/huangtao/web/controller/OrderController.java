@@ -34,4 +34,7 @@ public class OrderController {
     public boolean addOrder(@RequestBody OrderVO orderVO){
         return restTemplate.postForObject("http://order/order/addorder",orderVO,boolean.class);
     }
+
+    //获取一个用户的在途订单
+
 }

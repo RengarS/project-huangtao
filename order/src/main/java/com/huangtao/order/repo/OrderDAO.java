@@ -1,10 +1,6 @@
 package com.huangtao.order.repo;
 
-import domains.order.OrderDO;
-import domains.order.OrderFood;
-import domains.order.OrderFoods;
-import domains.order.OrderVO;
-import domains.order.dto.OrderDTO;
+import domains.order.*;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -25,23 +21,21 @@ public interface OrderDAO {
      * @param id
      * @return
      */
-    @Select("select * from order_all where order_id = #{id}")
+    @Select("select a.*,b.url from order_all a,store_all b where a.order_id = #{id} AND a.order_store_name=b.store_name")
     @Results({
             @Result(column = "order_id", property = "orderId"),
-            @Result(column = "order_custom_id", property = "orderCustomId"),
-            @Result(column = "order_custom_name", property = "orderCustomName"),
+            @Result(column = "order_store_name", property = "StoreName"),
+            @Result(column = "url", property = "StorePhotoUrl"),
             @Result(column = "order_state", property = "orderState"),
-            @Result(column = "store_addr_all", property = "storeAddrAll"),
-            @Result(column = "end_addr_all", property = "endAddrAll"),
-            @Result(column = "order_store_id", property = "orderStoreId"),
-            @Result(column = "order_store_name", property = "orderStoreName"),
-            @Result(property = "foods", column = "order_id", javaType = List.class,
+            @Result(column = "order_cost", property = "orderCost"),
+            @Result(column = "order_end_date", property = "orderEndDate"),
+            @Result(property = "list", column = "order_id", javaType = List.class,
                     many = @Many(select = "getOrderFoodByOrderId"))
     })
-    OrderDTO getOrderDOById(String id);
+    List<OrderAllDO> getOrderDOById(String id);
 
     @Select("select * from t_order_all where order_id = #{orderId}")
-    OrderFood getOrderFoodByOrderId(String orderId);
+    OrderFoods getOrderFoodByOrderId(String orderId);
 
     /**
      * 订单完成更新订单状态 0:未完成 1：已完成
