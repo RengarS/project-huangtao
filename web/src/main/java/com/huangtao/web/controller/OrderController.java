@@ -19,7 +19,7 @@ public class OrderController {
 
     //获取商家列表
     @RequestMapping(value = "/shops", method = RequestMethod.GET)
-    public List<ShopsDO> get() {
+    public List<ShopsDO> get(){
         return restTemplate.getForObject("http://order/shops/showshops", List.class);
     }
 
