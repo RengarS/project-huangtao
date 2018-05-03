@@ -16,12 +16,12 @@ public interface OrderDAO {
     int saveOrder(OrderDO orderDo);
 
     /**
-     * 根据订单ID查询订单
+     * 根据用户查询订单
      *
-     * @param id
+     * @param name
      * @return
      */
-    @Select("select a.*,b.url from order_all a,store_all b where a.order_id = #{id} AND a.order_store_name=b.store_name")
+    @Select("select a.*,b.url from order_all a,store_all b where a.order_custom_name = #{name} AND a.order_store_name=b.store_name")
     @Results({
             @Result(column = "order_id", property = "orderId"),
             @Result(column = "order_store_name", property = "StoreName"),
@@ -32,19 +32,28 @@ public interface OrderDAO {
             @Result(property = "list", column = "order_id", javaType = List.class,
                     many = @Many(select = "getOrderFoodByOrderId"))
     })
-    List<OrderAllDO> getOrderDOById(String id);
+    List<OrderAllDO> getOrderDOByName(String name);
 
     @Select("select * from t_order_all where order_id = #{orderId}")
     OrderFoods getOrderFoodByOrderId(String orderId);
 
     /**
-     * 订单完成更新订单状态 0:未完成 1：已完成
+     * 订单完成更新订单状态 0:待处理 1：配送中  2:已完成(PC端用，商家接单，将状态0-->1)
      *
      * @param id
      * @return
      */
-    @Update("update  order_all set order_state=1 where order_id=#{id}")
+    @Update("update  order_all set order_state=1 where order_id=#{id} and order_state=0")
     int updateOrderStateById(String id);
+
+
+    /**
+     * 订单完成更新订单状态 0:待处理 1：配送中  2:已完成(移动端用，客户确认收货，将状态1-->2)
+     * @param id
+     * @return
+     */
+    @Update("update  order_all set order_state=2 where order_id=#{id} and order_state=1")
+    int updateOrderStateEnd(String id);
 
     /**
      * 新增订单(增加顾客信息)
@@ -52,8 +61,9 @@ public interface OrderDAO {
      * @param orderVO
      * @return
      */
-    @Insert("insert into order_all(order_id,order_custom_name,order_store_name,end_addr_all,order_custom_tel) values(#{orderId},#{orderCustomName},#{orderStoreName},#{endAddrAll},#{orderCustomTel})")
+    @Insert("insert into order_all(order_id,order_state,order_custom_name,order_store_name,end_addr_all,order_custom_tel,order_end_date) values(#{orderId},0,#{orderCustomName},#{orderStoreName},#{endAddrAll},#{orderCustomTel},date_add(SYSDATE(),INTERVAL 30 MINUTE))")
     int addOrder( OrderVO orderVO);
+
 
     /**
      * 新增订单(增加商品信息)
@@ -63,7 +73,6 @@ public interface OrderDAO {
      */
     @Insert("insert into t_order_all(order_id,food_id,food_name,state,numb,price) values(#{orderId},#{foodId},#{foodName},0,#{numb},#{price})")
     int addOrderTemp( OrderFoods orderFoods);
-
 
 
 }

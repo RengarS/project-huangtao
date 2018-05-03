@@ -15,16 +15,17 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    OrderService orderService;
+    private  OrderService orderService;
 
     @PostMapping(value = "/addorder")
     public boolean addOrder(@RequestBody @NotBlank OrderVO orderVO) {
         return orderService.addOrder(orderVO);
     }
 
-    @GetMapping(value = "/getorder/{id}")
-    public List<OrderAllDO> getOrderDOById(@PathVariable("id") @NotBlank String id) {
-        List<OrderAllDO> orderAllDOS = orderService.getOrderDOById(id);
+
+    @GetMapping(value = "/getorders/{name}")
+    public List<OrderAllDO> getOrderDOById(@PathVariable("name") @NotBlank String name) {
+        List<OrderAllDO> orderAllDOS = orderService.getOrderDOByName(name);
         return orderAllDOS;
     }
 
@@ -33,6 +34,12 @@ public class OrderController {
 
         return orderService.update(id);
     }
+
+    @GetMapping(value = "/updateOrderstateToEnd/{id}")
+    public boolean updateOrderstateToEnd(@PathVariable("id") @NotBlank String id) {
+        return orderService.update(id);
+    }
+
 
     @GetMapping(value = "/test")
     @ResponseBody

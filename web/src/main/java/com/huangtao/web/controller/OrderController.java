@@ -1,12 +1,12 @@
 package com.huangtao.web.controller;
 
+import domains.order.OrderAllDO;
 import domains.order.OrderMenu;
 import domains.order.OrderVO;
 import domains.order.ShopsDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
 
 @RestController
@@ -35,6 +35,16 @@ public class OrderController {
         return restTemplate.postForObject("http://order/order/addorder",orderVO,boolean.class);
     }
 
-    //获取一个用户的在途订单
+    //获取一个用户的订单
+    @RequestMapping("/getorders/{name}")
+    public List<OrderAllDO> getOrders(@PathVariable String name){
+        return restTemplate.getForObject("http://order/order/getorders/"+name,List.class);
+    }
 
+
+    //更新订单状态，结束订单，收货
+    @RequestMapping("/updateOrderstateToEnd/{id}")
+    public boolean updateOrderstateToEnd(@PathVariable String id){
+        return restTemplate.getForObject("http://order/order/updateOrderstateToEnd/"+id,boolean.class);
+    }
 }

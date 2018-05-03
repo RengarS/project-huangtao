@@ -22,9 +22,19 @@ public class OrderService {
         return orderDao.saveOrder(orderDO) > 0;
     }
 
-    //测的是这个
-    public List<OrderAllDO> getOrderDOById(String id) {
-        return orderDao.getOrderDOById(id);
+
+    public List<OrderAllDO> getOrderDOByName(String name) {
+        List<OrderAllDO> orderAllDOS = orderDao.getOrderDOByName(name);
+        for (OrderAllDO orderAllDO:orderAllDOS
+             ) {
+
+        for (OrderFoods orderFoods:orderAllDO.getList()
+             ) {
+             double cost = orderFoods.getNumb()*Double.parseDouble(orderFoods.getPrice());
+             orderAllDO.setOrderCost(String.valueOf(cost));
+        }
+        }
+        return orderAllDOS;
     }
 
     public boolean update(String id) {
@@ -41,5 +51,10 @@ public class OrderService {
             orderDao.addOrderTemp(obj);
         }
         return true;
+    }
+
+
+    public boolean updateToEnd(String id){
+        return orderDao.updateOrderStateEnd(id)>0;
     }
 }
