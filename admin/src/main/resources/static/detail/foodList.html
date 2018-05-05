@@ -324,8 +324,10 @@
     $.ready = function () {
         $.get("http://127.0.0.1:8801/order/getAllFoods/50001", {}, function (results) {
 //            if (results.code === 200) {
-                $("#TableData").clean();
-                for (var res in  results) {
+                $("#TableData").children().remove();
+
+                for (var res in results) {
+                    alert(res)
                         $("#TableData")
                             .append("<tr class=\"TableDetail1\">")
                             .append("<td>"+res.foodId+"</td>")

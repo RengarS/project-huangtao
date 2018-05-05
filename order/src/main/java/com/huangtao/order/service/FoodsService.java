@@ -36,7 +36,7 @@ public class FoodsService {
     }
 
     public List<Foods> getAllFoods(String id) {
-        int code = 0;
+        int code = 1;
         List<Foods> foodsList = foodsDAO.getAllFoods(id);
         for (Foods foods : foodsList) {
             foods.setId(code++);
