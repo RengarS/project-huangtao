@@ -1,0 +1,7 @@
+server:
+  port: 8899
+spring:
+    mvc:
+      static-path-pattern: /static/**
+    resources:
+      static-locations: classpath:/static/

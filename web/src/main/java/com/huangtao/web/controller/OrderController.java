@@ -4,6 +4,7 @@ import domains.order.OrderAllDO;
 import domains.order.OrderMenu;
 import domains.order.OrderVO;
 import domains.order.ShopsDO;
+import domains.order.dto.Foods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -46,5 +47,11 @@ public class OrderController {
     @RequestMapping("/updateOrderstateToEnd/{id}")
     public boolean updateOrderstateToEnd(@PathVariable String id){
         return restTemplate.getForObject("http://order/order/updateOrderstateToEnd/"+id,boolean.class);
+    }
+
+    //PC端获取一个商家的所有商品
+    @RequestMapping("/getAllFoods/{id}")
+    public List<Foods> getAlllFoods(@PathVariable String id){
+        return restTemplate.getForObject("http://order/foods/getfoods/"+id,List.class);
     }
 }

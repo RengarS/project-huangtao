@@ -4,6 +4,7 @@ import com.huangtao.order.repo.FoodsDAO;
 import domains.order.MenuItem;
 import domains.order.OrderMenu;
 import domains.order.FoodsDO;
+import domains.order.dto.Foods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +26,21 @@ public class FoodsService {
         OrderMenu menu = new OrderMenu();
         menu.setMenu(new LinkedList<>());
         List<String> types = foodsDAO.getTypeName(store);
-        types.forEach(obj->{
+        types.forEach(obj -> {
             MenuItem menuItem = new MenuItem();
             menuItem.setTypeName(obj);
-            menuItem.setItem(foodsDAO.getFoodsByType(obj,store));
+            menuItem.setItem(foodsDAO.getFoodsByType(obj, store));
             menu.getMenu().add(menuItem);
         });
-        return  menu;
+        return menu;
+    }
+
+    public List<Foods> getAllFoods(String id) {
+        int code = 0;
+        List<Foods> foodsList = foodsDAO.getAllFoods(id);
+        for (Foods foods : foodsList) {
+            foods.setId(code++);
+        }
+        return foodsList;
     }
 }

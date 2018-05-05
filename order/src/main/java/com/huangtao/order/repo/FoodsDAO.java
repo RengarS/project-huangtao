@@ -1,6 +1,7 @@
 package com.huangtao.order.repo;
 
 import domains.order.FoodsDO;
+import domains.order.dto.Foods;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -22,4 +23,15 @@ public interface FoodsDAO {
             @Result(column = "food_id", property = "foodId")})
     @Select("select * from food_all where typename=#{type} and food_store_name = #{storeName} and food_state=0")
     List<FoodsDO> getFoodsByType(@Param("type") String type, @Param("storeName") String storeName);
+
+
+    /**
+     * PC端根据商家ID获取所有的商品
+     * @param id
+     * @return
+     */
+    @Select("select * from food_all where food_store_id=#{id}")
+    List<Foods>  getAllFoods(String id);
 }
+
+
