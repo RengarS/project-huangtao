@@ -1,9 +1,7 @@
 package com.huangtao.order.service;
 
 import com.huangtao.order.repo.FoodsDAO;
-import domains.order.MenuItem;
-import domains.order.OrderMenu;
-import domains.order.FoodsDO;
+import domains.order.*;
 import domains.order.dto.Foods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +40,15 @@ public class FoodsService {
             foods.setId(code++);
         }
         return foodsList;
+    }
+
+
+    public boolean updatefood(NewFood newFood){
+        return foodsDAO.updatefood(newFood)>0;
+    }
+
+
+    public OldFood getOldFoodById(String id){
+        return foodsDAO.getOldFoodById(id);
     }
 }

@@ -2,7 +2,6 @@ package com.huangtao.order.controller;
 
 import com.huangtao.order.service.OrderService;
 import domains.order.OrderAllDO;
-import domains.order.OrderDO;
 import domains.order.OrderVO;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +40,5 @@ public class OrderController {
     }
 
 
-    @GetMapping(value = "/test")
-    @ResponseBody
-    public OrderDO testClass() {
 
-        return new OrderDO();
-    }
 }

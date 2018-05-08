@@ -5,3 +5,5 @@ spring:
       static-path-pattern: /static/**
     resources:
       static-locations: classpath:/static/
+
+

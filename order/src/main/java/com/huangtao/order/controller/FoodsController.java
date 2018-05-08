@@ -1,14 +1,13 @@
 package com.huangtao.order.controller;
 
 import com.huangtao.order.service.FoodsService;
+import domains.order.NewFood;
+import domains.order.OldFood;
 import domains.order.OrderMenu;
 import domains.order.dto.Foods;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +26,26 @@ public class FoodsController {
     @GetMapping("getfoods/{id}")
     public List<Foods> getAllFoods(@PathVariable("id") @NotBlank String id){
         return foodsService.getAllFoods(id);
+    }
+
+    /**
+     * 更新商品信息（PC端用）
+     * @param newFood
+     * @return
+     */
+    @PostMapping("updatefoods")
+    public boolean updatefoods(@RequestBody @NotBlank NewFood newFood){
+        return foodsService.updatefood(newFood);
+    }
+
+    /**
+     * 根据商品ID获取商品信息（PC端用于渲染更新页面）
+     * @param id
+     * @return OldFood
+     */
+    @GetMapping("getoldfood/{id}")
+    public OldFood getOldFoodById(@PathVariable("id") @NotBlank String id){
+        return foodsService.getOldFoodById(id);
     }
 
 }

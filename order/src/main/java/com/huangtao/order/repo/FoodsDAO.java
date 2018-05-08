@@ -1,6 +1,8 @@
 package com.huangtao.order.repo;
 
 import domains.order.FoodsDO;
+import domains.order.NewFood;
+import domains.order.OldFood;
 import domains.order.dto.Foods;
 import org.apache.ibatis.annotations.*;
 
@@ -32,6 +34,22 @@ public interface FoodsDAO {
      */
     @Select("select * from food_all where food_store_id=#{id}")
     List<Foods>  getAllFoods(String id);
+
+    /**
+     * PC端根据商品Id更新商品信息
+     * @param newFood
+     * @return
+     */
+    @Update("update food_all a set a.food_name=#{foodName},a.food_price=#{foodPrice},a.food_desc=#{introduce},a.url=#{imageUrl} where a.food_id=#{foodId}")
+    int updatefood(NewFood newFood);
+
+    /**
+     * PC端根据商品Id获取老的商品信息供更新用
+     * @param id
+     * @return
+     */
+    @Select("select * from food_all where food_id=#{foodId}")
+    OldFood getOldFoodById(String id);
 }
 
 
