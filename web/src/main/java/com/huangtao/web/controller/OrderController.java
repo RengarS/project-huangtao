@@ -80,9 +80,11 @@ public class OrderController {
      * @param newFood
      * @return
      */
+
+
     @PostMapping("/updatefood")
     public boolean updateFood(@RequestBody NewFood newFood){
-        return restTemplate.postForObject("http://order/foods/updatefood",newFood,boolean.class);
+        return restTemplate.postForObject("http://order/foods/updatefoods",newFood,boolean.class);
     }
 
     /**
@@ -92,7 +94,6 @@ public class OrderController {
      */
     @GetMapping("/getoldfood/{id}")
     public OldFood getOldFoodById(@PathVariable String id){
-        System.out.println("访问到了web！");
         return restTemplate.getForObject("http://order/foods/getoldfood/"+id,OldFood.class);
     }
 }

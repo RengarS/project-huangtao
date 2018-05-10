@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
     <!-- 包含公共的JSP代码片段 -->
@@ -7,12 +6,11 @@
     <title>无线点餐平台</title>
 
 
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script type="text/javascript" src="style/js/jquery.js"></script>
     <script type="text/javascript" src="style/js/page_common.js"></script>
     <link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
+    <link rel="stylesheet" type="text/css" href="style/css/index_1.css"/>
 </head>
 <body>
 
@@ -24,7 +22,6 @@
 
 
             <img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 更新新菜品
-
 
 
         </div>
@@ -46,23 +43,24 @@
                 <div class="ItemBlock2">
                     <table cellpadding="0" cellspacing="0" class="mainForm">
                         <tr>
-                            <td width="80px">菜系</td>
+                            <td width="80px">菜品种类</td>
                             <td>
                                 <select name="cid" style="width:80px">
 
                                     <option value="1"
                                             selected="selected"
-                                    >营养粥</option>
+                                    >营养粥
+                                    </option>
 
 
                                     <option value="2"
 
-                                    >炒菜</option>
-
+                                    >炒菜
+                                    </option>
 
 
                                 </select>
-                                *<input type="hidden" name="id" value="1" /></td>
+                                *<input type="hidden" name="id" value="1"/></td>
                         </tr>
                         <tr>
                             <td width="80px">菜名</td>
@@ -73,13 +71,13 @@
                             <td><input type="text" name="price" class="InputStyle" value="36.0"/> *</td>
                         </tr>
                         <tr>
-                            <td>菜品类型</td>
+                            <td>菜品状态</td>
                             <td><input type="text" name="foodState" class="InputStyle" value="23.0"/> *</td>
                         </tr>
 
                         <tr>
                             <td>简介</td>
-                            <td><textarea name="introduce" class="TextareaStyle">粤菜白灼虾，大件！</textarea></td>
+                            <td><textarea name="introduce" class="TextareaStyle"></textarea></td>
                         </tr>
                         <tr>
                             <td width="80px">菜品图片</td>
@@ -99,7 +97,7 @@
 
         <!-- 表单操作 -->
         <div id="InputDetailBar">
-            <input type="submit" value="修改" class="FunctionButtonInput" onclick="submit">
+            <input type="button" value="修改" class="FunctionButtonInput" onclick="submit();return false">
             <a href="javascript:history.go(-1);" class="FunctionButton">返回</a>
         </div>
     </form>
@@ -108,32 +106,61 @@
 </html>
 <script>
     //获取传过来的商品id
-    var foodId  = window.location.search.substring(1).split("=")[1];
-    alert(foodId);
-    $.get("http://127.0.0.1:8801/order/getoldfood/"+foodId,{},function (res) {
-        console.log(res)
+    var foodId = window.location.search.substring(1).split("=")[1];
+    $.get("http://127.0.0.1:8801/order/getoldfood/" + foodId, {}, function (res) {
+        var jsonres = JSON.parse(res);
+        console.log(jsonres, "================");
+        $("input[name='foodName']").val(jsonres.foodName);
+        $("input[name='price']").val(jsonres.foodPrice);
+        $("input[name='foodState']").val(jsonres.foodState);
+        $("input[name='introduce']").val(jsonres.foodDesc);
+        $("input[name='image']").val(jsonres.imageUrl);
+
     })
-
-
-
 
 
     function submit() {
         //获取到的更新后的菜品信息实体类
-        var NewFood = new Object();
-        NewFood.foodId=foodId;
-        NewFood.foodName=$("input[name='foodName']").val();
-        NewFood.foodPrice=$("input[name='price']").val();
-        NewFood.foodState=$("input[name='foodState']").val();
-        NewFood.introduce=$("input[name='introduce']").val();
-        NewFood.imageUrl=$("input[name='image']").val();
-        $.post("127.0.0.1:8801/order/updatefood",NewFood,function (res) {
-            if(res==true){
+//        var NewFood = new Object();
+//        NewFood.foodId = foodId;
+//        NewFood.foodName = $("input[name='foodName']").val();
+//        NewFood.foodPrice = $("input[name='price']").val();
+//        NewFood.foodState = $("input[name='foodState']").val();
+//        NewFood.introduce = $("input[name='introduce']").val();
+//        NewFood.imageUrl = $("input[name='image']").val();
+//        var data1 = JSON.stringify(NewFood);
+
+
+        var data = {
+            "foodName": $("input[name='foodName']").val(),
+            "foodId": foodId,
+            "foodPrice": $("input[name='price']").val(),
+            "foodState": $("input[name='foodState']").val(),
+            "introduce": $("input[name='introduce']").val(),
+            "imageUrl": $("input[name='image']").val()
+        }
+
+
+        var data1 = {
+            "foodId":"20001",
+            "foodName":"白米粥",
+            "foodPrice":"3333333",
+            "foodState":"0",
+            "introduce":"经济实惠，物美价廉，精米熬制而成",
+            "imageUrl":"/pages/images/白米粥.jpg"
+        }
+        var data2 = JSON.stringify(data1)
+
+        console.log(data)
+
+        $.post("http://127.0.0.1:8801/order/updatefood", data2, function (res) {
+            if (res == true) {
                 alert("更新成功！")
-            }else{
+            } else {
                 alert("系统错误！请联系管理员")
             }
         })
+
     }
-    
+
 </script>

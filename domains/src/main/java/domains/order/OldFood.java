@@ -8,6 +8,6 @@ public class OldFood {
     private String foodName;
     private String foodPrice;
     private String foodState;
-    private String food_desc;
+    private String foodDesc;
     private String Url;
 }
