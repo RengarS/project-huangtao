@@ -1,7 +1,6 @@
 package com.huangtao.order.controller;
 
 import com.huangtao.order.service.FoodsService;
-import domains.order.NewFood;
 import domains.order.OldFood;
 import domains.order.OrderMenu;
 import domains.order.dto.Foods;
@@ -30,12 +29,13 @@ public class FoodsController {
 
     /**
      * 更新商品信息（PC端用）
-     * @param newFood
+     * @param foodId
+     * @param foodPrice
      * @return
      */
-    @PostMapping("updatefoods")
-    public boolean updatefoods(@RequestBody @NotBlank NewFood newFood){
-        return foodsService.updatefood(newFood);
+    @GetMapping("updatefoods")
+    public boolean updatefoods(@RequestParam("foodId") String foodId, @RequestParam("foodPrice") String foodPrice){
+        return foodsService.updatefood(foodId,foodPrice);
     }
 
     /**

@@ -3,6 +3,7 @@ package com.huangtao.order.service;
 import com.huangtao.order.repo.FoodsDAO;
 import domains.order.*;
 import domains.order.dto.Foods;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +44,8 @@ public class FoodsService {
     }
 
 
-    public boolean updatefood(NewFood newFood){
-        return foodsDAO.updatefood(newFood)>0;
+    public boolean updatefood(@Param("foodId") String foodId, @Param("foodPrice") String foodPrice){
+        return foodsDAO.updatefood(foodId,foodPrice)>0;
     }
 
 

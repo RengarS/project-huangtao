@@ -32,7 +32,7 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
     <!-- 表单内容 -->
-    <form action="#" method="post" enctype="multipart/form-data">
+    <form>
         <!-- 本段标题（分段标题） -->
         <div class="ItemBlock_Title">
             <img width="4" height="7" border="0" src="style/images/item_point.gif"> 菜品信息&nbsp;
@@ -93,73 +93,77 @@
                 </div>
             </div>
         </div>
-
+    </form>
 
         <!-- 表单操作 -->
         <div id="InputDetailBar">
-            <input type="button" value="修改" class="FunctionButtonInput" onclick="submit();return false">
+            <button  class="FunctionButtonInput" onclick="submit1()" value="修改">修改</button>
             <a href="javascript:history.go(-1);" class="FunctionButton">返回</a>
         </div>
-    </form>
+
 </div>
 </body>
 </html>
 <script>
-    //获取传过来的商品id
     var foodId = window.location.search.substring(1).split("=")[1];
-    $.get("http://127.0.0.1:8801/order/getoldfood/" + foodId, {}, function (res) {
-        var jsonres = JSON.parse(res);
-        console.log(jsonres, "================");
-        $("input[name='foodName']").val(jsonres.foodName);
-        $("input[name='price']").val(jsonres.foodPrice);
-        $("input[name='foodState']").val(jsonres.foodState);
-        $("input[name='introduce']").val(jsonres.foodDesc);
-        $("input[name='image']").val(jsonres.imageUrl);
+    $.ready = function () {
+        console.log("*************")
+        //获取传过来的商品id
 
-    })
+        console.log(foodId);
 
+        $.ajax({
+            url: "http://127.0.0.1:8801/order/getoldfood/" + foodId,
+            type: "get",
+            async: false,
+            data: {},
+            success: function (res) {
+                console.log(res, "----------")
+                var jsonres = JSON.parse(res);
 
-    function submit() {
-        //获取到的更新后的菜品信息实体类
-//        var NewFood = new Object();
-//        NewFood.foodId = foodId;
-//        NewFood.foodName = $("input[name='foodName']").val();
-//        NewFood.foodPrice = $("input[name='price']").val();
-//        NewFood.foodState = $("input[name='foodState']").val();
-//        NewFood.introduce = $("input[name='introduce']").val();
-//        NewFood.imageUrl = $("input[name='image']").val();
-//        var data1 = JSON.stringify(NewFood);
-
-
-        var data = {
-            "foodName": $("input[name='foodName']").val(),
-            "foodId": foodId,
-            "foodPrice": $("input[name='price']").val(),
-            "foodState": $("input[name='foodState']").val(),
-            "introduce": $("input[name='introduce']").val(),
-            "imageUrl": $("input[name='image']").val()
-        }
+                console.log(jsonres, "================");
+                $("input[name='foodName']").val(jsonres.foodName);
+                $("input[name='price']").val(jsonres.foodPrice);
+                $("input[name='foodState']").val(jsonres.foodState);
+                $("input[name='introduce']").val(jsonres.foodDesc);
+                $("input[name='image']").val(jsonres.imageUrl);
+            }
+        });
+    };
 
 
-        var data1 = {
-            "foodId":"20001",
-            "foodName":"白米粥",
-            "foodPrice":"3333333",
-            "foodState":"0",
-            "introduce":"经济实惠，物美价廉，精米熬制而成",
-            "imageUrl":"/pages/images/白米粥.jpg"
-        }
-        var data2 = JSON.stringify(data1)
-
-        console.log(data)
-
-        $.post("http://127.0.0.1:8801/order/updatefood", data2, function (res) {
-            if (res == true) {
+    function submit1() {
+        console.log("------------++++++++++++");
+//
+        var foodPrice = $("input[name='price']").val();
+        console.log(foodPrice,"传参2222")
+        $.get("http://127.0.0.1:8801/order/updatefood?foodId="+foodId+"&foodPrice="+foodPrice, function (res) {
+            console.log(res)
+            if (res) {
                 alert("更新成功！")
             } else {
                 alert("系统错误！请联系管理员")
             }
-        })
+        });
+
+
+//        $.ajax({
+//            url: "http://127.0.0.1:8801/order/updatefood",
+//            type: "GET",
+//            async: false,
+//            beforeSend: function (xhr) {
+//                xhr.setRequestHeader("content-type", "application/json;charset=utf-8")
+//            },
+//            data: data,
+//            success: function (res) {
+//                if (res === true) {
+//                    alert("更新成功！")
+//                } else {
+//                    alert("系统错误！请联系管理员")
+//                }
+//            }
+//        })
+
 
     }
 

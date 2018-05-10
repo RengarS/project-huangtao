@@ -77,7 +77,9 @@
             resjson.forEach(function (t) {
                 console.log(t)
                 var foodid = t.foodId;
-                var href = "/static/detail/updateFood.html?foodId=" + t.foodId
+                var href = "/static/detail/updateFood.html?foodId=" + t.foodId;
+                console.log(t.foodId,"++++++++++++++");
+
                 $("#TableData")
                     .append("<tr class=\"TableDetail1\">")
                     .append("<td style='text-align: center'>" + t.id + "</td>")
