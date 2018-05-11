@@ -40,8 +40,8 @@ public interface FoodsDAO {
      * @param foodPrice
      * @return
      */
-    @Update("update food_all a set a.food_price=#{foodPrice} where a.food_id=#{foodId}")
-    int updatefood(@Param("foodId") String foodId,@Param("foodPrice") String foodPrice);
+    @Update("update food_all a set a.food_price=#{foodPrice},a.food_name=#{foodName},a.food_state=#{foodState},a.url=#{imageUrl},a.food_desc=#{foodDesc} where a.food_id=#{foodId}")
+    int updatefood(@Param("foodId") String foodId, @Param("foodPrice") String foodPrice,@Param("foodName") String foodName,@Param("foodDesc") String foodDesc,@Param("imageUrl") String imageUrl,@Param("foodState") String foodState);
 
     /**
      * PC端根据商品Id获取老的商品信息供更新用

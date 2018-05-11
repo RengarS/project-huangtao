@@ -44,8 +44,8 @@ public class FoodsService {
     }
 
 
-    public boolean updatefood(@Param("foodId") String foodId, @Param("foodPrice") String foodPrice){
-        return foodsDAO.updatefood(foodId,foodPrice)>0;
+    public boolean updatefood(@Param("foodId") String foodId, @Param("foodPrice") String foodPrice,@Param("foodName") String foodName,@Param("foodDesc") String foodDesc,@Param("imageUrl") String imageUrl,@Param("foodState") String foodState){
+        return foodsDAO.updatefood(foodId,foodPrice,foodName,foodDesc,imageUrl,foodState)>0;
     }
 
 

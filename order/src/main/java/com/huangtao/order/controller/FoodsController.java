@@ -34,8 +34,8 @@ public class FoodsController {
      * @return
      */
     @GetMapping("updatefoods")
-    public boolean updatefoods(@RequestParam("foodId") String foodId, @RequestParam("foodPrice") String foodPrice){
-        return foodsService.updatefood(foodId,foodPrice);
+    public boolean updatefoods(@RequestParam("foodId") String foodId, @RequestParam("foodPrice") String foodPrice,@RequestParam("foodName") String foodName,@RequestParam("foodDesc") String foodDesc,@RequestParam("imageUrl") String imageUrl,@RequestParam("foodState") String foodState){
+        return foodsService.updatefood(foodId,foodPrice,foodName,foodDesc,imageUrl,foodState);
     }
 
     /**

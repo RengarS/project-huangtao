@@ -83,15 +83,15 @@ public class OrderController {
     }
 
     /**
-     *
+     * PC端更新商品信息
      * @param foodId
      * @param foodPrice
      * @return
      */
 
     @GetMapping("/updatefood")
-    public boolean updateFood(@RequestParam("foodId") String foodId, @RequestParam("foodPrice") String foodPrice) {
-        return restTemplate.getForObject("http://order/foods/updatefoods?foodId="+foodId+"&foodPrice="+foodPrice, boolean.class);
+    public boolean updateFood(@RequestParam("foodId") String foodId, @RequestParam("foodPrice") String foodPrice,@RequestParam("foodName") String foodName,@RequestParam("foodDesc") String foodDesc,@RequestParam("imageUrl") String imageUrl,@RequestParam("foodState") String foodState) {
+        return restTemplate.getForObject("http://order/foods/updatefoods?foodId="+foodId+"&foodPrice="+foodPrice+"&foodName="+foodName+"&foodState="+foodState+"&foodDesc="+foodDesc+"&imageUrl="+imageUrl, boolean.class);
     }
 
     /**
@@ -104,4 +104,6 @@ public class OrderController {
     public OldFood getOldFoodById(@PathVariable String id) {
         return restTemplate.getForObject("http://order/foods/getoldfood/" + id, OldFood.class);
     }
+
+
 }

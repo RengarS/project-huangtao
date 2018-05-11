@@ -118,10 +118,7 @@
             async: false,
             data: {},
             success: function (res) {
-                console.log(res, "----------")
                 var jsonres = JSON.parse(res);
-
-                console.log(jsonres, "================");
                 $("input[name='foodName']").val(jsonres.foodName);
                 $("input[name='price']").val(jsonres.foodPrice);
                 $("input[name='foodState']").val(jsonres.foodState);
@@ -133,11 +130,13 @@
 
 
     function submit1() {
-        console.log("------------++++++++++++");
 //
         var foodPrice = $("input[name='price']").val();
-        console.log(foodPrice,"传参2222")
-        $.get("http://127.0.0.1:8801/order/updatefood?foodId="+foodId+"&foodPrice="+foodPrice, function (res) {
+        var foodName = $("input[name='foodName']").val();
+        var foodState = $("input[name='foodState']").val();
+        var foodDesc = $("input[name='introduce']").val();
+        var imageUrl = $("input[name='image']").val();
+        $.get("http://127.0.0.1:8801/order/updatefood?foodId="+foodId+"&foodPrice="+foodPrice+"&foodName="+foodName+"&foodState="+foodState+"&foodDesc="+foodDesc+"&imageUrl="+imageUrl, function (res) {
             console.log(res)
             if (res) {
                 alert("更新成功！")
