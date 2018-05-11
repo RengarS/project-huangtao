@@ -1,10 +1,7 @@
 package com.huangtao.order.service;
 
 import com.huangtao.order.repo.OrderDAO;
-import domains.order.OrderAllDO;
-import domains.order.OrderDO;
-import domains.order.OrderFoods;
-import domains.order.OrderVO;
+import domains.order.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,5 +53,10 @@ public class OrderService {
 
     public boolean updateToEnd(String id){
         return orderDao.updateOrderStateEnd(id)>0;
+    }
+
+
+    public List<OrderListVO> getOrderByStoreId(String storeId){
+        return orderDao.getOrderByStoreId(storeId);
     }
 }

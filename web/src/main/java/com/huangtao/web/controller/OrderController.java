@@ -96,7 +96,6 @@ public class OrderController {
 
     /**
      * PC端获取要更新的老商品信息
-     *
      * @param id
      * @return
      */
@@ -105,5 +104,14 @@ public class OrderController {
         return restTemplate.getForObject("http://order/foods/getoldfood/" + id, OldFood.class);
     }
 
+    /**
+     * PC端获取所有的未完成订单
+     * @param storeId
+     * @return
+     */
+    @GetMapping("/getOrderByStoreId/{storeId}")
+    public List<OrderListVO> getOrderByStoreId(@PathVariable String storeId){
+        return restTemplate.getForObject("http://order/order/getordersPC/"+storeId,List.class);
+    }
 
 }

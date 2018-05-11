@@ -75,4 +75,11 @@ public interface OrderDAO {
     int addOrderTemp( OrderFoods orderFoods);
 
 
+    /**
+     * PC端根据商铺ID获取该商铺尚未完成的订单
+     * @param storeId
+     * @return
+     */
+    @Select("select * from order_all where order_store_id = #{storeId} and order_state <> 2")
+    List<OrderListVO> getOrderByStoreId(String storeId);
 }

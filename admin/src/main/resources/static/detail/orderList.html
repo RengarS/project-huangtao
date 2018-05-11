@@ -1,79 +1,85 @@
-﻿
-<html>
+﻿<html>
 <head>
-	<!-- 包含公共的JSP代码片段 -->
-	
-<title>无线点餐平台</title>
+    <!-- 包含公共的JSP代码片段 -->
+
+    <title>无线点餐平台</title>
 
 
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="style/js/jquery.js"></script>
-<script type="text/javascript" src="style/js/page_common.js"></script>
-<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
-	<script type="text/javascript">
-		setInterval(function(){
-			window.location.href = "/wirelessplatform/client.html?method=list";
-		},10000000 * 50);
-	</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="style/js/jquery.js"></script>
+    <script type="text/javascript" src="style/js/page_common.js"></script>
+    <link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="style/css/index_1.css"/>
+    <script type="text/javascript">
+        setInterval(function () {
+            window.location.href = "/wirelessplatform/client.html?method=list";
+        }, 10000000 * 50);
+    </script>
 </head>
 <body>
-	<!-- 页面标题 -->
-	<div id="TitleArea">
-		<div id="TitleArea_Head"></div>
-		<div id="TitleArea_Title">
-			<div id="TitleArea_Title_Content">
-				<img border="0" width="13" height="13"
-					src="style/images/title_arrow.gif" /> 餐厅订单列表
-			</div>
-		</div>
-		<div id="TitleArea_End"></div>
-	</div>
+<!-- 页面标题 -->
+<div id="TitleArea">
+    <div id="TitleArea_Head"></div>
+    <div id="TitleArea_Title">
+        <div id="TitleArea_Title_Content">
+            <img border="0" width="13" height="13"
+                 src="style/images/title_arrow.gif"/> 餐厅订单列表
+        </div>
+    </div>
+    <div id="TitleArea_End"></div>
+</div>
 
-	<!-- 主内容区域（数据列表或表单显示） -->
-	<div id="MainArea">
-		<table class="MainArea_Content" align="center" cellspacing="0" cellpadding="0">
-			<!-- 表头-->
-			<thead>
-				<tr align="center" valign="middle" id="TableTitle">
-					<td>订单编号</td>
-					<td>客户名</td>
-					<td>下单日期</td>
-					<td>总金额</td>
-					<td>状态</td>
-					<td>操作</td>
-				</tr>
-			</thead>
-			<!--显示数据列表 -->
-			<tbody id="TableData">
-				
-			 		<tr height="60" style="text-align: center">
-				 		<td>15375222</td>
-				 		<td>纽约</td>
-				 		<td>2014-12-08 23:29:18.0</td>
-				 		<td>204.0</td>
-				 		
-				 			
-				 				<td>未结账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 					
-				 				</td>
-				 			
-				 			
-				 		
-				 		<td>
-							<a href="orderDetail.html" class="FunctionButton">详细</a> 
-				 			
-				 				<a href="#" class="FunctionButton">结账</a>
-				 			
-				 		</td>
-			 		</tr>
-			 	
-			</tbody>
-		</table>
-		<!-- 其他功能超链接 -->
-		<div id="TableTail" align="center">
-		</div>
-	</div>
+<!-- 主内容区域（数据列表或表单显示） -->
+<div id="MainArea">
+    <table class="MainArea_Content" align="center" cellspacing="0" cellpadding="0">
+        <!-- 表头-->
+        <thead>
+        <tr align="center" valign="middle" id="TableTitle">
+            <td>订单编号</td>
+            <td>客户名</td>
+            <td>下单日期</td>
+            <td>总金额</td>
+            <td>状态</td>
+            <td>操作</td>
+            <td>联系电话</td>
+        </tr>
+        </thead>
+        <!--显示数据列表 -->
+        <tbody id="TableData">
+        <tr height="60" style="text-align: center">
+            <td>15375222</td>
+            <td>纽约</td>
+            <td>2014-12-08 23:29:18.0</td>
+            <td>204.0</td>
+            <td>未结账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                <a href="orderDetail.html" class="FunctionButton">详细</a>
+                <a href="#" class="FunctionButton">接单</a>
+                <a href="#" class="FunctionButton">谢绝接单</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    <!-- 其他功能超链接 -->
+    <div id="TableTail" align="center">
+    </div>
+</div>
 </body>
+<script>
+    //获取当前登录的店铺的ID
+    var storeId = window.location.search.substring(1).split("=")[1];
+    //获取该商铺所有未完成订单
+    $.ready = function () {
+       $.get("http://127.0.0.1:8801/order/getOrderByStoreId/"+storeId,{},function (res) {
+          var Jsonres =JSON.parse(res);
+          Jsonres.forEach(function (t) {
+              $("#TableData").append(" <tr height=\"60\" style=\"text-align: center\">")
+                  .append("<td>"+t.orderId+"</td>")
+                  .append("<td>"+t.+"</td>")
+          })
+
+       })
+    }
+</script>
 </html>

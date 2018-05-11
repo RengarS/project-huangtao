@@ -107,11 +107,6 @@
 <script>
     var foodId = window.location.search.substring(1).split("=")[1];
     $.ready = function () {
-        console.log("*************")
-        //获取传过来的商品id
-
-        console.log(foodId);
-
         $.ajax({
             url: "http://127.0.0.1:8801/order/getoldfood/" + foodId,
             type: "get",
@@ -130,7 +125,7 @@
 
 
     function submit1() {
-//
+
         var foodPrice = $("input[name='price']").val();
         var foodName = $("input[name='foodName']").val();
         var foodState = $("input[name='foodState']").val();
@@ -144,25 +139,6 @@
                 alert("系统错误！请联系管理员")
             }
         });
-
-
-//        $.ajax({
-//            url: "http://127.0.0.1:8801/order/updatefood",
-//            type: "GET",
-//            async: false,
-//            beforeSend: function (xhr) {
-//                xhr.setRequestHeader("content-type", "application/json;charset=utf-8")
-//            },
-//            data: data,
-//            success: function (res) {
-//                if (res === true) {
-//                    alert("更新成功！")
-//                } else {
-//                    alert("系统错误！请联系管理员")
-//                }
-//            }
-//        })
-
 
     }
 
