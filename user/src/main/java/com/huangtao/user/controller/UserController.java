@@ -52,4 +52,9 @@ public class UserController {
     public CustomerDTO see(@PathVariable("id") @NotBlank String id) {
         return new CustomerDTO();
     }
+
+    @GetMapping("/logincheck")
+    public String getStoreIdLogin(@RequestParam("username") String username,@RequestParam("password") String password){
+        return customerService.getStoreIdLogin(username,password);
+    }
 }

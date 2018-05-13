@@ -2,6 +2,7 @@ package com.huangtao.order.controller;
 
 import com.huangtao.order.service.OrderService;
 import domains.order.OrderAllDO;
+import domains.order.OrderFoods;
 import domains.order.OrderListVO;
 import domains.order.OrderVO;
 import org.hibernate.validator.constraints.NotBlank;
@@ -45,9 +46,8 @@ public class OrderController {
      * @param id
      * @return
      */
-    @PostMapping(value = "/updateorderstate/{id}")
+    @GetMapping(value = "/updateorderstate/{id}")
     public boolean updateOrderstateById(@PathVariable("id") @NotBlank String id) {
-
         return orderService.update(id);
     }
 
@@ -70,5 +70,11 @@ public class OrderController {
     List<OrderListVO> getOrderByStoreId( @PathVariable("storeId") String storeId){
         return orderService.getOrderByStoreId(storeId);
     }
+
+    @GetMapping("/getOrderByOrderId/{orderId}")
+    List<OrderFoods> getOrderByOrderId(@PathVariable("orderId")  String orderId){
+        return orderService.getOrderFoodByOrderId(orderId);
+    }
+
 
 }

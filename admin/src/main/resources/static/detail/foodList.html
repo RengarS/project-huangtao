@@ -78,7 +78,14 @@
                 console.log(t)
                 var foodid = t.foodId;
                 var href = "/static/detail/updateFood.html?foodId=" + t.foodId;
-                console.log(t.foodId,"++++++++++++++");
+                var State = null;
+                if(t.foodState==0){
+                    State = "在售";
+                }else if(t.foodState==1){
+                    State = "停售";
+                }else {
+                    State = "错误类型";
+                }
 
                 $("#TableData")
                     .append("<tr class=\"TableDetail1\">")
@@ -87,7 +94,7 @@
                     .append("<td style='text-align: center'>" + t.foodName + "</td>")
                     .append("<td style='text-align: center'>" + t.typeName + "</td>")
                     .append("<td style='text-align: center'>" + t.foodPrice + "</td>")
-                    .append("<td style='text-align: center'>" + t.foodState + "</td>")
+                    .append("<td style='text-align: center'>" + State + "</td>")
                     .append("<td style='text-align: center'>\n" +
                         '<a href="' + href + '"' + ' class=\"FunctionButton\">更新</a>\n' +
                         "<a onClick=\"return delConfirm();\"\n" +

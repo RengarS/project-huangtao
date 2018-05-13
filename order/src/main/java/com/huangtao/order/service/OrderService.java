@@ -22,14 +22,12 @@ public class OrderService {
 
     public List<OrderAllDO> getOrderDOByName(String name) {
         List<OrderAllDO> orderAllDOS = orderDao.getOrderDOByName(name);
-        for (OrderAllDO orderAllDO:orderAllDOS
-             ) {
+        for (OrderAllDO orderAllDO : orderAllDOS) {
 
-        for (OrderFoods orderFoods:orderAllDO.getList()
-             ) {
-             double cost = orderFoods.getNumb()*Double.parseDouble(orderFoods.getPrice());
-             orderAllDO.setOrderCost(String.valueOf(cost));
-        }
+            for (OrderFoods orderFoods : orderAllDO.getList()) {
+                double cost = orderFoods.getNumb() * Double.parseDouble(orderFoods.getPrice());
+                orderAllDO.setOrderCost(String.valueOf(cost));
+            }
         }
         return orderAllDOS;
     }
@@ -38,12 +36,11 @@ public class OrderService {
         return orderDao.updateOrderStateById(id) > 0;
     }
 
-    public boolean addOrder(OrderVO orderVO){
-       String orderId = UUID.randomUUID().toString();
-       orderVO.setOrderId(orderId);
-       orderDao.addOrder(orderVO);
-        for (OrderFoods obj:orderVO.getList()
-             ) {
+    public boolean addOrder(OrderVO orderVO) {
+        String orderId = UUID.randomUUID().toString();
+        orderVO.setOrderId(orderId);
+        orderDao.addOrder(orderVO);
+        for (OrderFoods obj : orderVO.getList()) {
             obj.setOrderId(orderId);
             orderDao.addOrderTemp(obj);
         }
@@ -51,12 +48,24 @@ public class OrderService {
     }
 
 
-    public boolean updateToEnd(String id){
-        return orderDao.updateOrderStateEnd(id)>0;
+    public boolean updateToEnd(String id) {
+        return orderDao.updateOrderStateEnd(id) > 0;
     }
 
 
-    public List<OrderListVO> getOrderByStoreId(String storeId){
-        return orderDao.getOrderByStoreId(storeId);
+    public List<OrderListVO> getOrderByStoreId(String storeId) {
+        List<OrderListVO> listVOS =  orderDao.getOrderByStoreId(storeId);
+        for (OrderListVO orderListVO :listVOS ) {
+            double cost =0;
+            cost = cost+Double.valueOf(orderDao.getOrderFoodByOrderId(orderListVO.getOrderId()).getPrice())* Double.valueOf(orderDao.getOrderFoodByOrderId(orderListVO.getOrderId()).getNumb());
+            orderListVO.setCost(cost);
+        }
+
+        return listVOS;
+    }
+
+
+    public List<OrderFoods> getOrderFoodByOrderId(String orderId){
+        return orderDao.getOrderFoodsByOrderId(orderId);
     }
 }

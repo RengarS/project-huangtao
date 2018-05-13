@@ -61,6 +61,15 @@ public class OrderController {
 
 
     /**
+     * 更新订单状态，商家接单，配送中
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/updateOrderStateToGo/{orderId}")
+    public boolean updateOrderStateToGo(@PathVariable String orderId){
+        return restTemplate.getForObject("http://order/order/updateorderstate/"+orderId,boolean.class);
+    }
+    /**
      * 更新订单状态，结束订单，收货
      *
      * @param id
@@ -112,6 +121,16 @@ public class OrderController {
     @GetMapping("/getOrderByStoreId/{storeId}")
     public List<OrderListVO> getOrderByStoreId(@PathVariable String storeId){
         return restTemplate.getForObject("http://order/order/getordersPC/"+storeId,List.class);
+    }
+
+    /**
+     *
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/getOrderByOrderId/{orderId}")
+    List<OrderFoods> getOrderByOrderId(@PathVariable("orderId") String orderId ){
+        return restTemplate.getForObject("http://order/order/getOrderByOrderId/"+orderId,List.class);
     }
 
 }

@@ -37,6 +37,9 @@ public interface OrderDAO {
     @Select("select * from t_order_all where order_id = #{orderId}")
     OrderFoods getOrderFoodByOrderId(String orderId);
 
+    @Select("select * from t_order_all where order_id = #{orderId}")
+    List<OrderFoods> getOrderFoodsByOrderId(String orderId);
+
     /**
      * 订单完成更新订单状态 0:待处理 1：配送中  2:已完成(PC端用，商家接单，将状态0-->1)
      *

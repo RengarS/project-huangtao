@@ -40,25 +40,12 @@
             <td>下单日期</td>
             <td>总金额</td>
             <td>状态</td>
-            <td>操作</td>
             <td>联系电话</td>
+            <td>操作</td>
         </tr>
         </thead>
         <!--显示数据列表 -->
         <tbody id="TableData">
-        <tr height="60" style="text-align: center">
-            <td>15375222</td>
-            <td>纽约</td>
-            <td>2014-12-08 23:29:18.0</td>
-            <td>204.0</td>
-            <td>未结账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td>
-                <a href="orderDetail.html" class="FunctionButton">详细</a>
-                <a href="#" class="FunctionButton">接单</a>
-                <a href="#" class="FunctionButton">谢绝接单</a>
-            </td>
-        </tr>
-
         </tbody>
     </table>
     <!-- 其他功能超链接 -->
@@ -69,17 +56,56 @@
 <script>
     //获取当前登录的店铺的ID
     var storeId = window.location.search.substring(1).split("=")[1];
+    //  var storeId = 50001;
     //获取该商铺所有未完成订单
     $.ready = function () {
        $.get("http://127.0.0.1:8801/order/getOrderByStoreId/"+storeId,{},function (res) {
           var Jsonres =JSON.parse(res);
           Jsonres.forEach(function (t) {
-              $("#TableData").append(" <tr height=\"60\" style=\"text-align: center\">")
-                  .append("<td>"+t.orderId+"</td>")
-                  .append("<td>"+t.+"</td>")
+
+              var orderState = null;
+              if(t.orderState==0){
+                  orderState = "待处理";
+              }else if(t.orderState==1){
+                  orderState = "配送中";
+              }else if(t.orderState==2){
+                  orderState = "已完成";
+              }else if(t.orderState==3){
+                  orderState = "已拒绝接单";
+              }else {
+                  orderState = "错误类型";
+              }
+              var orderId = t.orderId;
+              var fun = 'resloveorder("'+orderId+'"'+')';
+              console.log(fun)
+              var href = "orderDetail.html?orderId="+t.orderId;
+              $("#TableData").append(" <tr height='20' style='text-align: center'>")
+                  .append("<td style='text-align: center'>"+t.orderId+"</td>")
+                  .append("<td style='text-align: center'>"+t.orderCustomName+"</td>")
+                  .append("<td style='text-align: center'>"+t.orderEndDate+"</td>")
+                  .append("<td style='text-align: center'>"+t.cost+"</td>")
+                  .append("<td style='text-align: center'>"+orderState+"</td>")
+                  .append("<td style='text-align: center'>"+t.orderCustomTel+"</td>")
+                  .append("<td style='text-align: center'>\n" +
+                      '<a href=\"' + href + '\"' + '  class=\"FunctionButton\">详细</a>\n' +
+                      '<a href="#" class="FunctionButton" onclick=' +fun+'>接单</a>'+
+                      "<a href=\"#\" class=\"FunctionButton\">谢绝接单</a>\n" +
+                      "</td>")
           })
 
        })
+    }
+    
+    
+    
+    function resloveorder(id) {
+        $.get("http://127.0.0.1:8801/order/updateOrderStateToGo/"+id,{},function (res) {
+            if(res){
+                alert("已接单，请尽快备餐")
+            }else {
+                alert("系统错误，请联系管理员")
+            }
+        })
     }
 </script>
 </html>

@@ -3,28 +3,58 @@ package com.huangtao.web.controller;
 import domains.user.CustomerDTO;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class IndexController {
 
     @Autowired
     private RestTemplate restTemplate;
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/{id}")
-    @ResponseBody
     public CustomerDTO getUserInfo(@PathVariable("id") String id) {
 
         return restTemplate.getForObject("http://user/user/see/" + id, CustomerDTO.class);
     }
 
+    /**
+     * PC端登录时获取对应的店铺ID
+     * @param username
+     * @param password
+     * @return
+     */
+    @GetMapping("/logincheck")
+    public String getStoreIdLogin(@RequestParam("username") String username, @RequestParam("password") String password){
+        return restTemplate.getForObject("http://user/user/logincheck?username="+username+"&password="+password,String.class);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @Data
 class User {
     private int id;

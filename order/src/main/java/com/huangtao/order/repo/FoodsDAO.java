@@ -48,7 +48,7 @@ public interface FoodsDAO {
      * @param id
      * @return
      */
-    @Select("select * from food_all where food_id=#{foodId}")
+    @Select("select * from food_all where food_id=#{foodId} ")
     OldFood getOldFoodById(String id);
 }
 

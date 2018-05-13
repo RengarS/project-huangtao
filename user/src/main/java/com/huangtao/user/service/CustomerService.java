@@ -2,6 +2,7 @@ package com.huangtao.user.service;
 
 import com.huangtao.user.domain.CustomerDO;
 import com.huangtao.user.repo.CustomerDAO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,10 @@ public class CustomerService {
             return true;
         }
         return false;
+    }
+
+    public String getStoreIdLogin(@Param("username") String username,@Param("password") String password){
+        return customerDAO.getStoreIdLogin(username,password);
     }
 
 
