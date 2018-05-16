@@ -26,6 +26,10 @@ public class OrderController {
         return restTemplate.getForObject("http://order/shops/showshops", List.class);
     }
 
+    @GetMapping("/showshopsorderby/{condition}")
+    public List<ShopsDO> getByCondition(@PathVariable String condition){
+        return restTemplate.getForObject("http://order/shops/showshopsorderby/"+condition,List.class);
+    }
     /**
      * 获取一个商家的在售商品
      *

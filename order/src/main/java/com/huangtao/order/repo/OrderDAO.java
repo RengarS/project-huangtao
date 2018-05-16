@@ -55,7 +55,7 @@ public interface OrderDAO {
      * @param id
      * @return
      */
-    @Update("update  order_all set order_state=2 where order_id=#{id} and order_state=1")
+    @Update("update  order_all  set order_state=2 where order_id=#{id} and order_state=1")
     int updateOrderStateEnd(String id);
 
     /**

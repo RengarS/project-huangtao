@@ -11,13 +11,24 @@ import java.util.List;
 public class ShopsService {
 
     @Autowired
-    ShopsDAO shopsDAO;
+    private ShopsDAO shopsDAO;
 
     //获取所有商家信息
 
     public List<ShopsDO> getShops(){
         System.out.println(shopsDAO.getshops());
         return shopsDAO.getshops();
+    }
+
+
+    public List<ShopsDO> showshopsorderby(String condition){
+        System.out.println(shopsDAO.getshops());
+
+        if (condition.equals("sales")) {
+            return shopsDAO.showShopsOrderBySales();
+        }else{
+            return shopsDAO.showShopsOrderByDistance();
+        }
     }
 
 }

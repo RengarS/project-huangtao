@@ -58,7 +58,7 @@ public class OrderController {
      */
     @GetMapping(value = "/updateOrderstateToEnd/{id}")
     public boolean updateOrderstateToEnd(@PathVariable("id") @NotBlank String id) {
-        return orderService.update(id);
+        return orderService.updateToEnd(id);
     }
 
     /**
