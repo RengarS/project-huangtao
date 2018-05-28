@@ -52,4 +52,8 @@ public class FoodsService {
     public OldFood getOldFoodById(String id){
         return foodsDAO.getOldFoodById(id);
     }
+
+    public boolean delFood(@Param("foodId") String foodId,@Param("foodStoreId") String foodStoreId){
+        return foodsDAO.delFood(foodId,foodStoreId)>0;
+    }
 }

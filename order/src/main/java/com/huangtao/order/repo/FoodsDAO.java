@@ -50,6 +50,14 @@ public interface FoodsDAO {
      */
     @Select("select * from food_all where food_id=#{foodId} ")
     OldFood getOldFoodById(String id);
+
+    /**
+     * 删除商品
+     * @param foodId
+     * @return
+     */
+    @Update("update food_all a set a.food_state=1 where a.foodId=#{foodId} and a.food_store_id = #{foodStoreId}")
+    int delFood(@Param("foodId") String foodId,@Param("foodStoreId") String foodStoreId);
 }
 
 

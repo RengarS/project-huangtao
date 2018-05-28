@@ -15,7 +15,7 @@ import java.util.List;
 public class FoodsController {
 
     @Autowired
-    FoodsService foodsService;
+    private FoodsService foodsService;
 
     @GetMapping("showfoods/{name}")
     public OrderMenu getFoods(@PathVariable("name") @NotBlank String name) {
@@ -48,5 +48,15 @@ public class FoodsController {
         return foodsService.getOldFoodById(id);
     }
 
+    /**
+     * 删除商品(PC端管理商品)
+     * @param foodId
+     * @param foodStoreId
+     * @return
+     */
+    @GetMapping("delfood")
+    public boolean delFood(@RequestParam("foodId")  String foodId,@RequestParam("foodStoreId") String foodStoreId){
+        return foodsService.delFood(foodId,foodStoreId);
+    }
 
 }

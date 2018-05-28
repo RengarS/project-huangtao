@@ -128,7 +128,7 @@ public class OrderController {
     }
 
     /**
-     *
+     * 根据订单Id获取订单信息
      * @param orderId
      * @return
      */
@@ -137,4 +137,7 @@ public class OrderController {
         return restTemplate.getForObject("http://order/order/getOrderByOrderId/"+orderId,List.class);
     }
 
+    boolean delFood(@RequestParam("foodId") String foodId, @RequestParam("foodStoreId") String foodstoreId){
+        return restTemplate.getForObject("http://order/foods/delfood?foodId="+foodId+"&foodStoreId="+foodstoreId,boolean.class);
+    }
 }
