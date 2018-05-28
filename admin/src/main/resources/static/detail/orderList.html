@@ -55,12 +55,12 @@
 </body>
 <script>
     //获取当前登录的店铺的ID
-    var storeId = window.location.search.substring(1).split("=")[1];
-     var storeId = 50001;
+    var storeId = window.location.search.substring(1).split("=")[1];var storeId = 50001;
     //获取该商铺所有未完成订单
     $.ready = function () {
        $.get("http://127.0.0.1:8801/order/getOrderByStoreId/"+storeId,{},function (res) {
           var Jsonres =JSON.parse(res);
+           $("#TableData").children.remove();
           Jsonres.forEach(function (t) {
 
               var orderState = null;

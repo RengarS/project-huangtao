@@ -23,7 +23,6 @@ public class OrderService {
     public List<OrderAllDO> getOrderDOByName(String name) {
         List<OrderAllDO> orderAllDOS = orderDao.getOrderDOByName(name);
         for (OrderAllDO orderAllDO : orderAllDOS) {
-
             for (OrderFoods orderFoods : orderAllDO.getList()) {
                 double cost = orderFoods.getNumb() * Double.parseDouble(orderFoods.getPrice());
                 orderAllDO.setOrderCost(String.valueOf(cost));
@@ -37,6 +36,7 @@ public class OrderService {
     }
 
     public boolean addOrder(OrderVO orderVO) {
+        //随机生成UUID来当做orderId
         String orderId = UUID.randomUUID().toString();
         orderVO.setOrderId(orderId);
         orderDao.addOrder(orderVO);
@@ -44,6 +44,9 @@ public class OrderService {
             obj.setOrderId(orderId);
             orderDao.addOrderTemp(obj);
         }
+        //订单增加完成，增加商家的销售数量
+        orderDao.addSales(orderVO.getOrderStoreName());
+
         return true;
     }
 

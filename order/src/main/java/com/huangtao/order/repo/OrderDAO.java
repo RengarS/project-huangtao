@@ -79,6 +79,13 @@ public interface OrderDAO {
 
 
     /**
+     * 增加订单时增加商家sales
+     * @param storeId
+     * @return
+     */
+    @Update("update store_all a set a.sales=a.sales+1 where a.storeId = #{storeId} ")
+    int addSales(String storeId);
+    /**
      * PC端根据商铺ID获取该商铺尚未完成的订单
      * @param storeId
      * @return
